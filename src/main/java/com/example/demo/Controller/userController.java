@@ -1,6 +1,9 @@
 package com.example.demo.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +13,7 @@ import com.example.demo.Entity.user;
 import com.example.demo.Service.userService;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 public class userController {
     
     @Autowired
@@ -19,5 +22,10 @@ public class userController {
     @PostMapping("addUser")
     public String addUser(@RequestBody user us){
         return usServ.addUser(us);
+    }
+
+    @GetMapping("getUsers")
+    public List<user> getAllUsers(){
+        return usServ.showUsers();
     }
 }

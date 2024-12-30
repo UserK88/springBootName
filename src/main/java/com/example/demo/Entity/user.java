@@ -23,15 +23,10 @@ public class user {
     private String middleName;
     private String lastName;
     private String password;
-    
+
     public user(String firstName, String middleName, String lastName) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
-    }
-
-    
-    
-
-    
+    }    
 }

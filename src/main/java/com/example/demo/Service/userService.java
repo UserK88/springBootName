@@ -1,5 +1,7 @@
 package com.example.demo.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +15,21 @@ public class userService {
     private userRepository userRepo;
 
     public String addUser(user us){
-        String str = us.getFirstName().substring(0,2)+us.getMiddleName().substring(0,2)+us.getLastName().substring(0,2);
-        int randomNumber = 100 + (int)(Math.random() * 900);
-        String passW=str+randomNumber;
-        us.setPassword(passW);
+        String passWord = generatePassword(us.getFirstName(), us.getMiddleName(), us.getLastName());
+        us.setPassword(passWord);
         userRepo.save(us);
         return "User added successfully";
+    }
+
+    public List<user> showUsers(){
+        return userRepo.findAll();
+    }
+
+    public String generatePassword(String firstName, String middleName, String lastName){
+        String str = firstName.substring(0,2)+middleName.substring(0,2)+lastName.substring(0,2);
+        int randomNumber = 100 + (int)(Math.random() * 900);
+
+        String password = str+randomNumber;
+        return password;
     }
 }
